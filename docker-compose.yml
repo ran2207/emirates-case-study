@@ -17,5 +17,18 @@ services:
       - ./api:/www
     working_dir: /www
 
+  web:
+    command: yarn dev
+    environment:
+      REACT_APP_API_URI: http://localhost:3000/api
+      REACT_APP_DEBOUNCE_TIME: 300
+      REACT_APP_CACHE_TIME: 30000
+    image: node
+    ports:
+      - 3030:3000
+    volumes:
+      - ./web:/www
+    working_dir: /www
+
   redis:
     image: redis

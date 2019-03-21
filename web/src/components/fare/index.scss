@@ -1,0 +1,23 @@
+article {
+  img {
+    border-radius: 0.25em;
+  }
+
+  h3 {
+    margin-top: 1em;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  article {
+    flex: 0 1 calc(100% / 2 - 2em);
+    margin: 1em;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  article {
+    flex: 0 1 calc(100% / 3 - 4em);
+    margin: 2em;
+  }
+}
