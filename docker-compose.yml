@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  api:
+    command: yarn dev
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      EMIRATES_API_URI: https://www.emirates.com
+      COUNTRY_CODE_API_URI: https://restcountries.eu/rest/v2/all
+      REDIS_URI: redis://redis/1
+    image: node
+    ports:
+      - 3000:3000
+    restart: always
+    volumes:
+      - ./api:/www
+    working_dir: /www
+
+  redis:
+    image: redis

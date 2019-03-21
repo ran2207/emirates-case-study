@@ -23,7 +23,8 @@
   "dependencies": {
     "axios": "^0.18.0",
     "cors": "^2.8.5",
-    "fastify": "^1.14.1"
+    "fastify": "^1.14.1",
+    "redis": "^2.8.0"
   },
   "devDependencies": {
     "dotenv": "^6.2.0",

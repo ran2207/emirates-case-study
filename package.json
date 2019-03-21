@@ -1,0 +1,6 @@
+{
+  "name": "emirates-case-study",
+  "scripts": {
+    "start": "cd api && yarn && cd .. && docker-compose up"
+  }
+}

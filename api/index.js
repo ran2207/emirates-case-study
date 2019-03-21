@@ -13,7 +13,7 @@ server.register(routes, {
   prefix: 'api'
 })
 
-server.listen(3001, '0.0.0.0', err => {
+server.listen(PORT, '0.0.0.0', err => {
   if (err) {
     throw err
   }
