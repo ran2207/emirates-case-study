@@ -1,4 +1,4 @@
-# emirates-case-study
+# EMIRATES CASE STUDY
 
 ## Installation Guide
 
