@@ -1,29 +1,35 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { search } from '../../actions'
-import { Header, Results } from '../../components'
+import { getWatchlist } from '../../actions'
+import { Results } from '../../components'
 
 import './index.scss'
 
 class Watchlist extends Component {
+  componentDidMount() {
+    const { getWatchlist } = this.props
+
+    getWatchlist()
+  }
+
   render() {
-    const { results, search } = this.props
+    const { watchlist } = this.props
 
     return (
       <div className="home">
-        <Results {...results} />
+        <Results {...watchlist} type="watchlist" />
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ results }) => ({
-  results
+const mapStateToProps = ({ watchlist }) => ({
+  watchlist
 })
 
 const mapDispatchToProps = dispatch => ({
-  search: (keyword, page, size) => dispatch(search(keyword, page, size))
+  getWatchlist: () => dispatch(getWatchlist())
 })
 
 export default connect(

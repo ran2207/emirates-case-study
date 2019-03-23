@@ -27,7 +27,6 @@ export default () => async dispatch => {
     const {
       data: { codes }
     } = await axios.get(`${REACT_APP_API_URI}/country-code`)
-    console.log({ codes })
 
     dispatch(getCountrySuccess(codes))
   } catch (error) {
