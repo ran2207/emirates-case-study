@@ -1,3 +1,3 @@
-import fare from './fare'
+import search from './search'
 
-export { fare }
+export { search }

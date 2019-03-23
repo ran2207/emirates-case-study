@@ -4,69 +4,78 @@ import './index.scss'
 
 export default class Header extends Component {
   state = {
-    query: '',
-    size: 10
+    country: 'us'
   }
 
   componentDidMount() {
-    const { query, size } = this.state
+    const { country } = this.state
 
-    this.search(query, size)
+    this.search(country)
   }
 
-  search = (query, size) => {
+  search = country => {
     const { search } = this.props
 
-    search(query, 1, size)
+    search(country)
   }
 
-  onChangeQuery = event => {
+  handleSearchBtn = () => {
+    const { country } = this.state
+
+    this.search(country)
+  }
+
+  onChangeCountry = event => {
     const {
       target: { value }
     } = event
 
     this.setState({
-      query: value
+      country: value
     })
-
-    const { size } = this.state
-
-    this.search(value, size)
-  }
-
-  onChangeSize = event => {
-    const {
-      target: { value }
-    } = event
-
-    this.setState({
-      size: value
-    })
-
-    const { query } = this.state
-
-    this.search(query, value)
   }
 
   render() {
-    const { query, size } = this.state
+    const { country } = this.state
 
     return (
       <header>
-        <input
-          type="search"
-          placeholder="Search"
-          onChange={this.onChangeQuery}
-          value={query}
-        />
-        <select onChange={this.onChangeSize} value={size}>
-          <option disabled>Page size</option>
-          <option>10</option>
-          <option>20</option>
-          <option>30</option>
-          <option>40</option>
-          <option>50</option>
-        </select>
+        <div
+          className="row search-container"
+          style={{
+            border: '1px solid #ccc',
+            borderRadius: '5px',
+            padding: '20px',
+            backgroundColor: '#fff',
+            boxShadow: '2px 2px #ccc'
+          }}
+        >
+          <div className="col-md-6">
+            <label>To</label>
+            <select onChange={this.onChangeCountry} value={country}>
+              <option disabled>Select Country</option>
+              <option>us</option>
+              <option>in</option>
+              <option>ae</option>
+              <option>40</option>
+              <option>50</option>
+            </select>
+          </div>
+          <div className="col-md-6">
+            <button
+              onClick={this.handleSearchBtn}
+              style={{
+                backgroundColor: '#c60c30',
+                height: '50px',
+                width: '100%',
+                color: '#fff'
+              }}
+            >
+              Search
+            </button>
+          </div>
+          <div />
+        </div>
       </header>
     )
   }

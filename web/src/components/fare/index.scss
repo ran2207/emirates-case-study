@@ -1,23 +1,109 @@
-article {
-  img {
-    border-radius: 0.25em;
-  }
-
-  h3 {
-    margin-top: 1em;
-  }
+.overlay {
+  zoom: 1;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  position: absolute;
+  height: 85px;
+  z-index: 3;
+  bottom: 0;
+  left: 15px;
+  color: #fff;
 }
 
-@media only screen and (max-width: 768px) {
-  article {
-    flex: 0 1 calc(100% / 2 - 2em);
-    margin: 1em;
-  }
+.card {
+  border-radius: 8px;
+  height: 288px;
+  width: 1100px;
 }
 
-@media only screen and (min-width: 768px) {
-  article {
-    flex: 0 1 calc(100% / 3 - 4em);
-    margin: 2em;
-  }
+.color-band {
+  position: relative;
+  width: 100%;
+  background-color: #287214; //#245EB2
+  height: 3px;
+  top: -20px;
+}
+
+.card .card-tag {
+  position: absolute;
+  background-color: #c60c30;
+  font-weight: 700;
+  top: 20px;
+  padding: 10px 15px;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 0 4px 4px 0;
+  margin-left: -10px;
+}
+
+.card .card-tag:after {
+  content: '';
+  height: 0;
+  width: 0;
+  display: block;
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  border-top: 10px solid #9b0e01;
+  border-left: 10px solid transparent;
+  pointer-events: none;
+}
+
+.text-container {
+  position: absolute;
+  bottom: 1px;
+  left: 16px;
+  z-index: 3;
+}
+
+.text-container .icon {
+  font-size: 2.875em;
+  display: inline-block;
+  color: #fff;
+  width: 46px;
+  height: 46px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.text-container .text-wrapper {
+  max-width: 80%;
+  width: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 1em !important;
+  margin-bottom: 9px;
+}
+
+.trip-icon {
+  content: '\e053';
+}
+
+.desc-wrapper {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 80%;
+  width: 100%;
+}
+
+.text-small {
+  font-size: 14px;
+  color: #fff;
+  text-shadow: none;
+  font-family: helvetica, arial, sans-serif;
+  margin-top: 25px;
+}
+
+.text-large {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #fff;
+  line-height: 65px;
+  white-space: pre-wrap;
+  margin-top: 15px;
+}
+
+img {
+  height: 288px;
+  height: 286.5px;
 }
