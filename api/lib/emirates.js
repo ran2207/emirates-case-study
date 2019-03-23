@@ -18,6 +18,7 @@ class Emirates {
 
       return {
         id: `${depcitycode}-${destcitycode}-${++index}`,
+        watching: false,
         ...fare
       }
     })

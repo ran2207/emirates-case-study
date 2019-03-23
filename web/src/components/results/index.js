@@ -6,7 +6,7 @@ import './index.scss'
 
 export default class Results extends Component {
   render() {
-    const { loading, results, watchlist } = this.props
+    const { loading, results, watchlist, watch } = this.props
 
     return (
       <main>
@@ -18,10 +18,14 @@ export default class Results extends Component {
         {!watchlist && loading && <div className="loading" />}
         <section>
           {!watchlist &&
-            results.map((fare, index) => <Fare key={index} {...fare} />)}
+            results.map((fare, index) => (
+              <Fare key={index} {...fare} watch={watch} />
+            ))}
 
           {watchlist &&
-            watchlist.map((fare, index) => <Fare key={index} {...fare} />)}
+            watchlist.map((fare, index) => (
+              <Fare key={index} {...fare} watch={watch} />
+            ))}
         </section>
       </main>
     )

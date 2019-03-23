@@ -3,15 +3,27 @@ import React, { Component, Fragment } from 'react'
 import './index.scss'
 
 export default class Fare extends Component {
+  state = {
+    query: '1244',
+    types: 'add'
+  }
+
+  handleWatchlistBtn = (id, type) => {
+    const { watch } = this.props
+    const { query, types } = this.state
+    watch(query, types)
+  }
+
   render() {
     const {
+      id,
       image,
       depcountryname,
-      destcountryname,
       depcityshortname,
       depairportcode,
       destcityshortname,
       destairportcode,
+      watching,
       fares
     } = this.props
 
@@ -115,11 +127,43 @@ export default class Fare extends Component {
               </p>
               <div className="row">
                 <button
+                  onClick={
+                    !watching
+                      ? () =>
+                          this.handleWatchlistBtn(
+                            {
+                              id,
+                              image,
+                              depcountryname,
+                              depcityshortname,
+                              depairportcode,
+                              destcityshortname,
+                              destairportcode,
+                              watching,
+                              fares
+                            },
+                            'add'
+                          )
+                      : this.handleWatchlistBtn(
+                          {
+                            id,
+                            image,
+                            depcountryname,
+                            depcityshortname,
+                            depairportcode,
+                            destcityshortname,
+                            destairportcode,
+                            watching,
+                            fares
+                          },
+                          'remove'
+                        )
+                  }
                   type="button"
                   className="btn btn-primary pull-right"
                   style={{ backgroundColor: '#c60c30' }}
                 >
-                  watch this fare
+                  {!watching ? 'watch this fare' : 'watching'}
                 </button>
               </div>
             </div>

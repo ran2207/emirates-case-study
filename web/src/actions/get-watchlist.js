@@ -25,17 +25,35 @@ export const watchFailure = error => ({
   type: WATCH_FAILURE
 })
 
-export default () => async dispatch => {
+export default (watch, type) => async dispatch => {
+  console.log({ watch, type })
+  console.log('called')
   dispatch(watchPending())
 
   try {
-    const {
-      data: { watchlist }
-    } = await axios.get(`${REACT_APP_API_URI}/watchlist`)
+    if (type === 'add') {
+      const {
+        data: { watchlist }
+      } = await axios.post(`${REACT_APP_API_URI}/watchlist/add`, {
+        add: watch
+      })
 
-    console.log({ watchlist })
+      dispatch(watchSuccess(watchlist))
+    } else if (type === 'remove') {
+      const { id } = watch
 
-    dispatch(watchSuccess(watchlist))
+      const {
+        data: { watchlist }
+      } = await axios.get(`${REACT_APP_API_URI}/watchlist/remove/${id}`)
+
+      dispatch(watchSuccess(watchlist))
+    } else {
+      const {
+        data: { watchlist }
+      } = await axios.get(`${REACT_APP_API_URI}/watchlist`)
+
+      dispatch(watchSuccess(watchlist))
+    }
   } catch (error) {
     dispatch(watchFailure(error))
   }

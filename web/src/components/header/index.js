@@ -41,7 +41,6 @@ class Header extends Component {
 
   render() {
     const { codes, loading } = this.props
-    console.log({ codes })
 
     const { code } = this.state
 
@@ -67,7 +66,11 @@ class Header extends Component {
             >
               <option disabled>Select Country</option>
               {codes.map(({ name, code }) => {
-                return <option value={code}>{name}</option>
+                return (
+                  <option key={code} value={code}>
+                    {name}
+                  </option>
+                )
               })}
             </select>
           </div>
