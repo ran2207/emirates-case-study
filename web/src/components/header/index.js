@@ -1,28 +1,32 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+
+import { getCountry } from '../../actions'
 
 import './index.scss'
 
-export default class Header extends Component {
+class Header extends Component {
   state = {
-    country: 'us'
+    code: 'us'
   }
 
   componentDidMount() {
-    const { country } = this.state
+    const { getCountry } = this.props
 
-    this.search(country)
+    getCountry()
   }
 
-  search = country => {
+  search = code => {
     const { search } = this.props
 
-    search(country)
+    search(code)
   }
 
   handleSearchBtn = () => {
-    const { country } = this.state
+    const { code } = this.state
 
-    this.search(country)
+    this.search(code)
   }
 
   onChangeCountry = event => {
@@ -31,12 +35,15 @@ export default class Header extends Component {
     } = event
 
     this.setState({
-      country: value
+      code: value
     })
   }
 
   render() {
-    const { country } = this.state
+    const { codes, loading } = this.props
+    console.log({ codes })
+
+    const { code } = this.state
 
     return (
       <header>
@@ -52,13 +59,16 @@ export default class Header extends Component {
         >
           <div className="col-md-6">
             <label>To</label>
-            <select onChange={this.onChangeCountry} value={country}>
+
+            <select
+              onChange={this.onChangeCountry}
+              value={code}
+              disabled={loading}
+            >
               <option disabled>Select Country</option>
-              <option>us</option>
-              <option>in</option>
-              <option>ae</option>
-              <option>40</option>
-              <option>50</option>
+              {codes.map(({ name, code }) => {
+                return <option value={code}>{name}</option>
+              })}
             </select>
           </div>
           <div className="col-md-6">
@@ -80,3 +90,19 @@ export default class Header extends Component {
     )
   }
 }
+
+const mapStateToProps = ({ countries: { codes, loading } }) => ({
+  codes,
+  loading
+})
+
+const mapDispatchToProps = dispatch => ({
+  getCountry: () => dispatch(getCountry())
+})
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Header)
+)

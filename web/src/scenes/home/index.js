@@ -24,7 +24,7 @@ const mapStateToProps = ({ results }) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  search: (keyword, page, size) => dispatch(search(keyword, page, size))
+  search: code => dispatch(search(code))
 })
 
 export default connect(

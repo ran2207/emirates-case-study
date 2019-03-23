@@ -10,6 +10,10 @@ export default class Results extends Component {
 
     return (
       <main>
+        {!loading && results.length === 0 && (
+          <div className="start">Search for fares</div>
+        )}
+
         {loading && <div className="loading" />}
         <section>
           {results.map((fare, index) => (

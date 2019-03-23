@@ -1,3 +1,4 @@
+import getCountry from './get-country'
 import search from './search'
 
-export { search }
+export { getCountry, search }

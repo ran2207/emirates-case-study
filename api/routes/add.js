@@ -23,16 +23,16 @@ module.exports = {
       // if farecard exists
       if (exist) {
         return {
-          wishlist: data
+          watchlist: data
         }
       }
 
-      // else update wishlist with new farecard
+      // else update watchlist with new farecard
       await redis.set(key, [add, ...data])
 
       // send response
       return {
-        wishlist: [add, ...data]
+        watchlist: [add, ...data]
       }
     }
 
@@ -40,7 +40,7 @@ module.exports = {
     await redis.set(key, [add])
 
     return {
-      wishlist: [add]
+      watchlist: [add]
     }
   }
 }

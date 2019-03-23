@@ -2,10 +2,10 @@ const { redis } = require('../lib')
 
 module.exports = {
   method: 'GET',
-  url: '/watchlist/remove/:id',
+  url: '/watchlist',
   async handler(request) {
     const {
-      params: { id, userId = 2207 }
+      params: { userId = 2207 }
     } = request
 
     const key = `watchlist-${userId}`
@@ -14,15 +14,9 @@ module.exports = {
     const data = await redis.get(key)
 
     if (data) {
-      // remove farecard by filtering the id to be removed
-      const farecards = data.filter(d => d.id !== id)
-
-      // update watchlist after removing the farecard
-      await redis.set(key, farecards)
-
       // send response
       return {
-        watchlist: farecards
+        watchlist: data
       }
     }
 
