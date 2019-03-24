@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { getWatchlist } from '../../actions'
-import { Results } from '../../components'
+import { Watch } from '../../components'
 
 import './index.scss'
 
@@ -18,7 +18,7 @@ class Watchlist extends Component {
 
     return (
       <div className="home">
-        <Results {...watchlist} type="watchlist" />
+        <Watch {...watchlist} watcher={watchlist} />
       </div>
     )
   }
@@ -29,7 +29,7 @@ const mapStateToProps = ({ watchlist }) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getWatchlist: () => dispatch(getWatchlist())
+  getWatchlist: (watchlist, type) => dispatch(getWatchlist(watchlist, type))
 })
 
 export default connect(

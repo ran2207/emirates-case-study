@@ -8,7 +8,7 @@ module.exports = {
       body: { add }
     } = request
 
-    const { id, userId = 2207 } = add
+    const { id, userId = 2200 } = add
 
     const key = `watchlist-${userId}`
 

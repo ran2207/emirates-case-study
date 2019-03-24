@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { getCountry } from '../../actions'
@@ -46,6 +46,15 @@ class Header extends Component {
 
     return (
       <header>
+        <nav>
+          <NavLink
+            to="/watchlist"
+            style={{ color: '#c60c30', fontWeight: 'bold' }}
+          >
+            Go to Watchlist
+          </NavLink>
+        </nav>
+        <br />
         <div
           className="row search-container"
           style={{

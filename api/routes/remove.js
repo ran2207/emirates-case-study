@@ -5,7 +5,7 @@ module.exports = {
   url: '/watchlist/remove/:id',
   async handler(request) {
     const {
-      params: { id, userId = 2207 }
+      params: { id, userId = 2200 }
     } = request
 
     const key = `watchlist-${userId}`

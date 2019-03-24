@@ -1,17 +1,20 @@
 import React, { Component, Fragment } from 'react'
 
+import { api } from '../../lib'
+
 import './index.scss'
 
 export default class Fare extends Component {
-  state = {
-    query: '1244',
-    types: 'add'
-  }
+  handleWatchlistBtn = async watch => {
+    const { id } = watch
+    const { watching } = this.props
 
-  handleWatchlistBtn = (id, type) => {
-    const { watch } = this.props
-    const { query, types } = this.state
-    watch(query, types)
+    if (watching === 'false') {
+      await api.addToWatch(watch)
+    } else {
+      await api.removeFromWatch(id)
+      window.location.reload()
+    }
   }
 
   render() {
@@ -59,22 +62,14 @@ export default class Fare extends Component {
                     {
                       travelclass,
                       travelclasstext,
-                      traveltype,
-                      traveltypetext,
                       price,
                       currencycode,
-                      expiryindays,
-                      expirydate,
-                      tcid,
-                      travelfrom,
-                      traveluntil,
-                      travelfromuntil,
-                      searchforflight
+                      travelfromuntil
                     },
                     index
                   ) => {
                     return (
-                      <Fragment>
+                      <Fragment key={index}>
                         <div className="col-md">
                           <div
                             className="color-band"
@@ -144,8 +139,8 @@ export default class Fare extends Component {
                             },
                             'add'
                           )
-                      : this.handleWatchlistBtn(
-                          {
+                      : () =>
+                          this.handleWatchlistBtn({
                             id,
                             image,
                             depcountryname,
@@ -155,15 +150,13 @@ export default class Fare extends Component {
                             destairportcode,
                             watching,
                             fares
-                          },
-                          'remove'
-                        )
+                          })
                   }
                   type="button"
                   className="btn btn-primary pull-right"
                   style={{ backgroundColor: '#c60c30' }}
                 >
-                  {!watching ? 'watch this fare' : 'watching'}
+                  {watching === 'false' ? 'watch this fare' : 'watching'}
                 </button>
               </div>
             </div>
